@@ -1,25 +1,26 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-//        StringListImp stringListImp = new StringListImp();
-//        System.out.println(stringListImp.add("Artem"));
-//        System.out.println(stringListImp.add(1, "Nikolay"));
-//        System.out.println(stringListImp.add(2, "Nikita"));
-//        System.out.println(stringListImp.add(3, "Nikolay"));
-//        System.out.println(stringListImp.add(3, "Nik"));
-//        System.out.println(stringListImp.add(3, "Ar"));
-//        System.out.println(stringListImp.data.getStringArray().toString());
-////        System.out.println(stringListImp.remove(1));
-//        System.out.println(stringListImp.contains("Николай"));
-//        System.out.println(stringListImp.indexOf("Artem"));
-//        System.out.println(stringListImp.lastIndexOf("Nikolay"));
-//        System.out.println(stringListImp.get(1));
-//        System.out.println(stringListImp.equals(stringListImp.data.getStringArray()));
-//        System.out.println(stringListImp.size());
-//        System.out.println(stringListImp.isEmpty());
-//        System.out.println(Arrays.toString(stringListImp.toArray()));
+//        IntegerListImp integerListImp = new IntegerListImp(100000);
+//        IntegerListImp integerListImp2 = new IntegerListImp(100000);
+//        IntegerListImp integerListImp3 = new IntegerListImp(100000);
+//
+//
+//        Random rnd = new Random();
+//        for (Integer i = 0; i < integerListImp.size(); i++) {
+//            Integer add = rnd.nextInt(1000) * 10;
+//            integerListImp.add(add);
+//            integerListImp2.add(add);
+//            integerListImp3.add(add);
 
+        }
+
+
+//        56147 Пузырьковый способ
+//        8311 Сортировка выбором
+//       19034  Сортировка вставкой
 
     }
 }
