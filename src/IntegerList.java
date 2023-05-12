@@ -3,7 +3,7 @@ public interface IntegerList {
         // Добавление элемента.
         // Вернуть добавленный элемент
         // в качестве результата выполнения.
-        Integer add(Integer item);
+        int add(int item);
 
         // Добавление элемента
         // на определенную позицию списка.
@@ -12,7 +12,7 @@ public interface IntegerList {
         // выбросить исключение.
         // Вернуть добавленный элемент
         // в качестве результата выполнения.
-        Integer add(int index, Integer item);
+        int add(int index, int item);
 
         // Установить элемент
         // на определенную позицию,
@@ -21,39 +21,39 @@ public interface IntegerList {
         // если индекс больше
         // фактического количества элементов
         // или выходит за пределы массива.
-        Integer set(int index, Integer item);
+        int set(int index, int item);
 
         // Удаление элемента.
         // Вернуть удаленный элемент
         // или исключение, если подобный
         // элемент отсутствует в списке.
-        Integer remove(Integer item);
+        int remove(Integer item);
 
         // Удаление элемента по индексу.
         // Вернуть удаленный элемент
         // или исключение, если подобный
         // элемент отсутствует в списке.
-        Integer remove(int index);
+        int remove(int index);
 
         // Проверка на существование элемента.
         // Вернуть true/false;
-        boolean contains(Integer item);
+        boolean contains(int item);
 
         // Поиск элемента.
         // Вернуть индекс элемента
         // или -1 в случае отсутствия.
-        int indexOf(Integer item);
+        int indexOf(int item);
 
         // Поиск элемента с конца.
         // Вернуть индекс элемента
         // или -1 в случае отсутствия.
-        int lastIndexOf(Integer item);
+        int lastIndexOf(int item);
 
         // Получить элемент по индексу.
         // Вернуть элемент или исключение,
         // если выходит за рамки фактического
         // количества элементов.
-        Integer get(int index);
+        int get(int index);
 
         // Сравнить текущий список с другим.
         // Вернуть true/false или исключение,
@@ -74,7 +74,7 @@ public interface IntegerList {
         // Создать новый массив
         // из строк в списке
         // и вернуть его.
-        Integer[] toArray();
+        int[] toArray();
 
         void sort();
 

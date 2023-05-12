@@ -4,33 +4,34 @@ import Exeptions.NullException;
 
 import java.util.Arrays;
 
-public class IntegerListImp implements IntegerList{
+public class IntegerListImp implements IntegerList {
 
-    private final Integer[] integerList;
+    private int[] integerList;
 
     private int size;
 
     public IntegerListImp(int size) {
-       integerList = new Integer[size];
+        integerList = new int[size];
     }
 
     public IntegerListImp() {
-        integerList = new Integer[15];
+        integerList = new int[15];
     }
 
 
     @Override
-    public Integer add(Integer item) {
-        validatecheckStringsArrayIsFull();
+    public int add(int item) {
+        grow();
         validatecheckItem(item);
         integerList[size++] = item;
-        return item;    }
+        return item;
+    }
 
     @Override
-    public Integer add(int index, Integer item) {
+    public int add(int index, int item) {
         validatecheckIndex(index);
         validatecheckItem(item);
-        validatecheckStringsArrayIsFull();
+        grow();
         if (index == size) {
             add(item);
             return item;
@@ -44,7 +45,7 @@ public class IntegerListImp implements IntegerList{
     }
 
     @Override
-    public Integer set(int index, Integer item) {
+    public int set(int index, int item) {
         validatecheckItem(item);
         validatecheckIndex(index);
         integerList[index] = item;
@@ -52,12 +53,12 @@ public class IntegerListImp implements IntegerList{
     }
 
     @Override
-    public Integer remove(Integer item) {
+    public int remove(Integer item) {
         validatecheckItem(item);
         if (!contains(item)) {
             throw new NullException();
         }
-        if(indexOf(item) == (size - 1)){
+        if (indexOf(item) == (size - 1)) {
             size--;
             return item;
         }
@@ -69,7 +70,7 @@ public class IntegerListImp implements IntegerList{
     }
 
     @Override
-    public Integer remove(int index) {
+    public int remove(int index) {
         validatecheckIndex(index);
         Integer s = get(index);
         if (size - 1 == index) {
@@ -83,15 +84,15 @@ public class IntegerListImp implements IntegerList{
     }
 
     @Override
-    public boolean contains(Integer item) {
+    public boolean contains(int item) {
         sort();
         return binarySearch(item);
     }
 
     @Override
-    public int indexOf(Integer item) {
+    public int indexOf(int item) {
         for (int i = 0; i < size; i++) {
-            if (integerList[i].equals(item)) {
+            if (integerList[i] == (item)) {
                 return i;
             }
         }
@@ -99,16 +100,17 @@ public class IntegerListImp implements IntegerList{
     }
 
     @Override
-    public int lastIndexOf(Integer item) {
-        for (int i = size - 1; i >=0 ; i--) {
-            if (integerList[i].equals(item)) {
+    public int lastIndexOf(int item) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (integerList[i] == item) {
                 return i;
             }
         }
-        return -1;    }
+        return -1;
+    }
 
     @Override
-    public Integer get(int index) {
+    public int get(int index) {
         validatecheckIndex(index);
         return integerList[index];
     }
@@ -125,7 +127,7 @@ public class IntegerListImp implements IntegerList{
 
     @Override
     public boolean isEmpty() {
-       return size ==0;
+        return size == 0;
     }
 
     @Override
@@ -134,7 +136,7 @@ public class IntegerListImp implements IntegerList{
     }
 
     @Override
-    public Integer[] toArray() {
+    public int[] toArray() {
         return Arrays.copyOf(integerList, size);
     }
 
@@ -151,8 +153,64 @@ public class IntegerListImp implements IntegerList{
             swapElements(integerList, i, minElementIndex);
         }
     }
+    public  void mergeSort() {
+        mergeSort(integerList);
+    }
 
-    private boolean binarySearch(Integer element) {
+    public  void mergeSort(int[] arr) {
+        if (arr.length < 2) {
+            return;
+        }
+        int mid = arr.length / 2;
+        int[] left = new int[mid];
+        int[] right = new int[arr.length - mid];
+
+        for (int i = 0; i < left.length; i++) {
+            left[i] = arr[i];
+        }
+
+        for (int i = 0; i < right.length; i++) {
+            right[i] = arr[mid + i];
+        }
+
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(arr, left, right);
+    }
+
+    public static void merge(int[] arr, int[] left, int[] right) {
+
+        int mainP = 0;
+        int leftP = 0;
+        int rightP = 0;
+        while (leftP < left.length && rightP < right.length) {
+            if (left[leftP] <= right[rightP]) {
+                arr[mainP++] = left[leftP++];
+            } else {
+                arr[mainP++] = right[rightP++];
+            }
+        }
+        while (leftP < left.length) {
+            arr[mainP++] = left[leftP++];
+        }
+        while (rightP < right.length) {
+            arr[mainP++] = right[rightP++];
+        }
+    }
+
+    private void grow() {
+        for (int i = 0; i < integerList.length; i++) {
+            if (integerList[i] == 0) {
+                return;
+            }
+        }
+        int[] integerList;
+        integerList = Arrays.copyOf(this.integerList, (int) (size * 1.5));
+        this.integerList = integerList;
+    }
+
+    private boolean binarySearch(int element) {
         int min = 0;
         int max = integerList.length - 1;
 
@@ -173,7 +231,7 @@ public class IntegerListImp implements IntegerList{
     }
 
 
-    private static void swapElements(Integer[] arr, int indexA, int indexB) {
+    private static void swapElements(int[] arr, int indexA, int indexB) {
         int tmp = arr[indexA];
         arr[indexA] = arr[indexB];
         arr[indexB] = tmp;
